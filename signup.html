@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="css/all.css">
+    <!-- our style -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Smart Login System</title>
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="bg-main shadow-lg w-50 p-5 m-auto text-center text-white my-5">
+            <h1 class="mb-3">Smart Login System</h1>
+            <div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="regName" placeholder="Enter your name">
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="regEmail" placeholder="Enter your email">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="regPassword" placeholder="Enter your password">
+                </div>
+                <div class="text-danger" id="wrongPassword">Password should Contain small , capital letter , numbers and special characters </div>
+                <div id="cantSignup" class="text-danger">All inputs is required</div>
+                <button class="w-100 btn my-4" id="regButton">Sign Up</button>
+                <p>DOn't have an account? <a href="index.html" class="text-white text-decoration-none">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/signup.js"></script>
+
+</html>
