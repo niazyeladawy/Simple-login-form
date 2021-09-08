@@ -5,6 +5,8 @@ var regPassword = document.querySelector("#regPassword");
 var coordinatesContainer;
 var cantSignup = document.getElementById("cantSignup");
 var wrongPassword = document.getElementById("wrongPassword");
+var duplicateEmailError = document.getElementById("duplicateEmailError");
+
 
 if (localStorage.getItem("coordinatesList") == null) {
     coordinatesContainer = [];
@@ -15,20 +17,25 @@ else{
 
 regButton.addEventListener("click", register);
 function register() {
-    if (validateEmail() && validateName() && validatePassword()) {
-        var coordinates = {
-            name: regName.value,
-            email: regEmail.value,
-            password: regPassword.value
+    if(duplicateEmail() == false){
+        duplicateEmailError.style.display = "block";
+    }
+    else{
+        duplicateEmailError.style.display = "none";
+        if (validateEmail() && validateName() && validatePassword() ) {
+            var coordinates = {
+                name: regName.value,
+                email: regEmail.value,
+                password: regPassword.value
+            }
+            coordinatesContainer.push(coordinates);
+            localStorage.setItem("coordinatesList", JSON.stringify(coordinatesContainer));
+            document.location.href = "index.html";
         }
-        coordinatesContainer.push(coordinates);
-        localStorage.setItem("coordinatesList", JSON.stringify(coordinatesContainer));
-        document.location.href = "index.html";
+        else {
+            regEmail.classList.add("is-invalid");
+        }
     }
-    else {
-        regEmail.classList.add("is-invalid");
-    }
-
 }
 
 regEmail.addEventListener("focusout",validateEmail);
@@ -73,4 +80,13 @@ function validatePassword(){
         wrongPassword.style.display = "block";
         return false;
     }
+}
+
+function duplicateEmail(){
+    for(var i=0 ; i<coordinatesContainer.length ; i++){
+        if(regEmail.value == coordinatesContainer[i].email){
+            return false;
+        }
+    }
+    
 }
